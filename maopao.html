@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>事件冒泡</title>
+	<style>
+		ul li{
+			width: 100px;
+			height: 50px;
+			border: 1px solid #ff0000;
+			margin: 2px;
+			background-color: #ddd;
+			opacity: 0.5;
+		}
+	</style>
+	<script src="../code/jquery-3.3.1.min.js"></script>
+	<script>
+		$("ul").on("mouseover",function(e){
+                $(e.target).css("background-color","#ddd").siblings().css("background-color","white");
+            })
+		"user strict"
+		setTimeout(function() {
+		  console.log(1)
+		}, 0);
+		new Promise(function executor(resolve) {
+		  console.log(2);
+		  for( var i=0 ; i<10000 ; i++ ) {
+		    i == 9999 && resolve();
+		  }
+		  console.log(3);
+		}).then(function() {
+		  console.log(4);
+		});
+		console.log(5);//2,3,5,4,1
+
+		console.log(Math.sin(50 / 180 * Math.PI));
+	</script>
+</head>
+<body>
+	<ul>
+		<li>sdfsdf</li>
+		<li>sdfsdf</li>
+		<li>sdf</li>
+		<li>sdfsdf</li>
+		<li>sdfsdfsd</li>
+	</ul>
+</body>
+</html>
